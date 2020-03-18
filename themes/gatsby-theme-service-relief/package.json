@@ -1,6 +1,7 @@
 {
   "name": "gatsby-theme-service-relief",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "author": "Dustin Schau <dustinschau@gmail.com>"
 }

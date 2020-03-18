@@ -1,0 +1,7 @@
+{
+  "packages": [
+    "themes/*"
+  ],
+  "version": "independent",
+  "npmClient": "yarn"
+}
