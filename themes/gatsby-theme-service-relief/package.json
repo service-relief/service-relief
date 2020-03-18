@@ -3,5 +3,8 @@
   "version": "0.0.1-alpha.0",
   "main": "index.js",
   "license": "MIT",
-  "author": "Dustin Schau <dustinschau@gmail.com>"
+  "author": "Dustin Schau <dustinschau@gmail.com>",
+  "dependencies": {
+    "gatsby-source-airtable": "^2.1.0"
+  }
 }
