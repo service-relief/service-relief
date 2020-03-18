@@ -1,0 +1,14 @@
+{
+  "name": "service-relief",
+  "version": "1.0.0",
+  "main": "n/a",
+  "author": "Dustin Schau <dustinschau@gmail.com>",
+  "contributors": [
+    "Bob Orchard"
+  ],
+  "license": "MIT",
+  "workspaces": [
+    "starter",
+    "themes/*"
+  ]
+}
