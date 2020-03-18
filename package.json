@@ -15,7 +15,7 @@
     "publish": "lerna publish"
   },
   "workspaces": [
-    "starter",
+    "examples/*",
     "themes/*"
   ]
 }
