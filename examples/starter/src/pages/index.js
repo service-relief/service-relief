@@ -17,7 +17,7 @@ const IndexPage = ({ data }) => {
   })
   const categories = groups.reduce((merged, group) => {
     const category = group.nodes[0].data.Category[0]
-    merged[category] = true // TODO: use the actual node id
+    merged[category] = group.nodes[0].fields.slug
     return merged
   }, {})
   // TODO: make this suck less
@@ -38,7 +38,7 @@ const IndexPage = ({ data }) => {
             categoriesArr
               .map((category, index) => (
                 <React.Fragment>
-                  <a href={`#${category}`} className="underline">
+                  <a href={`#${categories[category]}`} className="underline">
                     {category}
                   </a>
               {index + 1 === categoriesArr.length ? `` : `,`}{` `}
@@ -80,17 +80,18 @@ const IndexPage = ({ data }) => {
       {
         groups.map(group => {
           const category = group.nodes[0].data.Category[0]
+          const slug = group.nodes[0].fields.slug
           // TODO: normalize these categories 
           return (
             <div className="mb-10">
-              <h2 id={category} className="text-xl font-bold">
+              <h2 id={slug} className="text-xl font-bold">
                 Support {category}
               </h2>
 
               <ul className="list-disc pl-6 mt-4">
                 {
                   group.nodes.map(node => (
-                    <li>
+                    <li className="mb-2">
                     <a
                       className="underline"
                       href={node.data.FundraiserUrl}
@@ -126,6 +127,9 @@ export const pageQuery = graphql`
     categories: allAirtable(filter: {data: {Approved: {eq: "Yes"}}}) {
       group(field:data___Category) {
         nodes {
+          fields {
+            slug
+          }
           data {
           BusinessName
           Category
