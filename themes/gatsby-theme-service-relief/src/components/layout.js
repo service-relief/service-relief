@@ -5,25 +5,27 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import { useStaticQuery, graphql } from "gatsby";
 
-import Header from "./header"
-import "../css/global.css"
+import Header from "./header";
+import "../css/global.css";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
         siteMetadata {
-          title,
-          city,
+          title
+          city
           state
+          authorName
+          authorLink
         }
       }
     }
-  `)
+  `);
 
   return (
     <>
@@ -41,18 +43,21 @@ const Layout = ({ children }) => {
             Gatsby
           </a>{" "}
           by{" "}
-          <a className="text-blue-600" href="https://boborchard.com">
-            Bob Orchard
+          <a className="text-blue-600" href={data.site.siteMetadata.authorLink}>
+            {data.site.siteMetadata.authorName}
           </a>
-          . A work in progress.
+          .{" "}
+          <a className="text-blue-600" href="https://www.servicerelief.us/">
+            Build one for your city.
+          </a>
         </footer>
       </div>
     </>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+  children: PropTypes.node.isRequired
+};
 
-export default Layout
+export default Layout;
