@@ -117,26 +117,26 @@ const IndexPage = ({ data }) => {
 export const pageQuery = graphql`
   query IndexQuery {
     site {
-        siteMetadata {
-          city
-          state
-        }
+      siteMetadata {
+        city
+        state
       }
+    }
     
-      categories: allAirtable(filter: {data: {Approved: {eq: "Yes"}}}) {
-        group(field:data___Category) {
-          nodes {
-            data {
-            BusinessName
-            Category
-            FundraiserDescription
-            FundraiserTitle
-            FundraiserUrl
-            Approved
-            }
+    categories: allAirtable(filter: {data: {Approved: {eq: "Yes"}}}) {
+      group(field:data___Category) {
+        nodes {
+          data {
+          BusinessName
+          Category
+          FundraiserDescription
+          FundraiserTitle
+          FundraiserUrl
+          Approved
           }
         }
       }
+    }
   }
 `
 
