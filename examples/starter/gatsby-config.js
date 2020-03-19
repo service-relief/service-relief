@@ -19,8 +19,8 @@ module.exports = {
         apiKey: process.env.AIRTABLE_API_KEY,
         tables: [
           {
-            baseId: `tbl0agqWsFRYLgAnV`, // TODO: make fake,
-            tableName: `viwU99vg5Nf0gLoPE` // TODO: make fake,
+            baseId: `appKKJX2Tz4Vq6hKl`, // TODO: make fake,
+            tableName: `tbl0agqWsFRYLgAnV` // TODO: make fake,
           }
         ]
       }

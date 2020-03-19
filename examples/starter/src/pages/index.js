@@ -1,21 +1,27 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { useStaticQuery, graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 
-const IndexPage = () => {
-  const data = useStaticQuery(graphql`
-    query SiteLocaleQuery {
-      site {
-        siteMetadata {
-          city,
-          state
-        }
-      }
+const IndexPage = ({ data }) => {
+  /*
+   * Sort Local first
+   * TODO: do this with GraphQL
+   */
+  const groups = data.categories.group.sort(group => {
+    if (group.nodes[0].data.Category[0] === `Local`) {
+      return -1
     }
-  `)
+    return 0
+  })
+  const categories = groups.reduce((merged, group) => {
+    const category = group.nodes[0].data.Category[0]
+    merged[category] = true // TODO: use the actual node id
+    return merged
+  }, {})
+  // TODO: make this suck less
+  const categoriesArr = Object.keys(categories)
   return (
     <Layout>
       <SEO title="Home" />
@@ -28,21 +34,17 @@ const IndexPage = () => {
         </p>
         <p className="text-lg mb-8">
           Jump to:{" "}
-          <a href="#support" className="underline">
-            {data.site.siteMetadata.city}
-          </a>
-          ,{" "}
-          <a href="#restaurants" className="underline">
-            restaurants
-          </a>
-          ,{" "}
-          <a href="#bars" className="underline">
-            bars &amp; venues
-          </a>
-          ,{" "}
-          <a href="#services" className="underline">
-            service businesses
-          </a>
+          {
+            categoriesArr
+              .map((category, index) => (
+                <React.Fragment>
+                  <a href={`#${category}`} className="underline">
+                    {category}
+                  </a>
+              {index + 1 === categoriesArr.length ? `` : `,`}{` `}
+                </React.Fragment>
+              ))
+          }
         </p>
         <Link
           to="/submit"
@@ -75,122 +77,67 @@ const IndexPage = () => {
         </p>
       </div>
 
-      <div className="mb-10">
-        <h2 id="support" className="text-xl font-bold">
-          Support Seattle
-        </h2>
+      {
+        groups.map(group => {
+          const category = group.nodes[0].data.Category[0]
+          // TODO: normalize these categories 
+          return (
+            <div className="mb-10">
+              <h2 id={category} className="text-xl font-bold">
+                Support {category}
+              </h2>
 
-        <ul className="list-disc pl-6 mt-4">
-          <li>
-            <a
-              className="underline"
-              href="https://www.gofundme.com/f/seattle-hospitality-emergency-fund"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Seattle Hospitality Emergency Fund
-            </a>{" "}
-            <p className="mt-2 italic">
-              Team fundraiser by Jessica Tousignant and Candace Whitney Morris
-              to help provide emergency relief to those workers whose hours have
-              been curtailed because of this crisis and who are not being
-              otherwise compensated.
-            </p>
-          </li>
-        </ul>
-      </div>
-
-      <div className="mb-10">
-        <h2 id="restaurants" className="text-xl font-bold">
-          Support restaurants
-        </h2>
-
-        <ul className="list-disc pl-6 mt-4">
-          <li>
-            <a
-              className="underline"
-              href="https://squareup.com/gift/PE1YXZ53M6WRW/order"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Brother Joe
-            </a>{" "}
-            <span className="italic">(support by purchasing gift cards)</span>
-          </li>
-        </ul>
-      </div>
-
-      <div className="mb-10">
-        <h2 id="bars" className="text-xl font-bold">
-          Support bar &amp; event staff
-        </h2>
-
-        <ul className="list-disc pl-6 mt-4">
-          <li>
-            <a
-              className="underline"
-              href="https://www.gofundme.com/f/latona-staff-covid19-shutdown"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Latona Pub
-            </a>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://checkout.square.site/buy/NFAPA6E5MR2MKWRJ7LATPRAY"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              WildRose
-            </a>{" "}
-            <span className="italic">(support by purchasing gift cards)</span>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://republicofcider.com/online-store"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Republic of Cider
-            </a>{" "}
-            <span className="italic">(support by purchasing gift cards)</span>
-          </li>
-        </ul>
-      </div>
-
-      <div className="mb-10">
-        <h2 id="services" className="text-xl font-bold">
-          Support service businesses
-        </h2>
-
-        <ul className="list-disc pl-6 mt-4">
-          <li>
-            <a
-              className="underline"
-              href="https://www.gofundme.com/f/help-cth-pet-sittersdog-walkers-during-covid19"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Close to Home Pet Services
-            </a>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://www.gofundme.com/f/savor-seattle-pike-place-market-COVID19"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Food Delivery by Savor Seattle
-            </a>
-          </li>
-        </ul>
-      </div>
+              <ul className="list-disc pl-6 mt-4">
+                {
+                  group.nodes.map(node => (
+                    <li>
+                    <a
+                      className="underline"
+                      href={node.data.FundraiserUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {node.data.FundraiserTitle}
+                    </a>{" "}
+                    {node.data.FundraiserDescription && (<p className="mt-2 italic">
+                      {node.data.FundraiserDescription}
+                    </p>)}
+                  </li>
+                  ))
+                }
+              </ul>
+            </div>
+          )
+        })
+      }
     </Layout>
   )
 }
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    site {
+        siteMetadata {
+          city
+          state
+        }
+      }
+    
+      categories: allAirtable(filter: {data: {Approved: {eq: "Yes"}}}) {
+        group(field:data___Category) {
+          nodes {
+            data {
+            BusinessName
+            Category
+            FundraiserDescription
+            FundraiserTitle
+            FundraiserUrl
+            Approved
+            }
+          }
+        }
+      }
+  }
+`
 
 export default IndexPage
