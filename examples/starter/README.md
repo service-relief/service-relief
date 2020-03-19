@@ -75,9 +75,9 @@ With all 4 values copied. You are ready to set up the code portion of the site.
 
 ### Code configuration
 
-You will need to copy the code from this site and deploy it to make it available to anyone visitng your page on the internet, the place that your webpage's files live is where it is hosted. The easiest way to do so is by clicking on a set up button which will help you get setup a hosting service.
+You will need to copy the code from this site and deploy it to make it available to anyone visitng your page on the internet, the place that your webpage's files live is where it is hosted. The easiest way to do so is by clicking on a set up button which will help you get setup a hosting service. These steps have instructions for Netlify though the process is very similar for other providers. You only need to choose one.
 
-This is for Netlify:
+This button is for Netlify:
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/service-relief/gatsby-starter-service-relief)
 
@@ -87,7 +87,46 @@ And this is for Zeit Now:
 
 When you click on one of these buttons, the link will take you to the service and start you on the setup process by making 2 accounts, one on the hosting service, and one on GitHub. The hosting service will add your code to GitHub (a code storing service) for you and prompt you to create an account for it as well.
 
-<!-- TODO add images/screenshots/steps for setting up on Netlify or Zeit or Gatsby Cloud and adding environment variables to connect to Airtable -->
+#### Netlify hosting configuration
+
+Clicking on the deploy button will take you to this screen:
+
+![Netlify deploy flow](./src/images/start-flow.png)
+
+Click "Connect to GitHub" which will have you setup a GitHub account, you can select a Free plan, but you will need to verify your email to connect it to Netlify.
+
+After connecting, you can name keep the default name (no one will see this but you) and click "Save & Deploy". You will also need to setup a Netlify account now in order to save your site to your account.
+
+![Netlify deploy flow](./src/images/name-and-save.png)
+
+Your Netlify account will now be linked to the code that was copied on GitHub, but you need to update some settings (that you found in the steps above) to connect it all to Airtable. Click on "Settings" in the top navigation bar, then select "Build & deploy" from the sidebar on the left, and finally click "Environment" underneath that. Look for a button that says "Edit variables":
+
+![Netlify environment settings](./src/images/env.png)
+
+These environment settings tell your site how to run specific for your copy of the code. The values you copied before that connect to _your_ Airtable account provided here will populate your site with your data.
+
+Add the following keys and values (key is in all caps, the value is what you copied from Airtable):
+
+```
+AIRTABLE_API_KEY=key00000000000000
+AIRTABLE_BASE_ID=app00000000000000
+AIRTABLE_EMBED_ID=shr0000000000000
+AIRTABLE_TABLE_NAME=tbl00000000000
+CITY=Provo
+STATE=Utah
+```
+
+The final two keys added are the city and state you are creating your site for. This will populate content in the body of the site. The example above uses 000's in place of real keys because you will need to replace those values with the ones that you copied from your Airtable account.
+
+Hit "Save" once you have added in all 6 or your values and you should have everything connected to Airtable when your site is deployed.
+
+Scroll to the tope and navigate to the "Deploys" section and Trigger a new deploy with "Trigger Deploy", "Deploy Site" or "Clear cache and deploy site". When it's finished you should be able to click on the link provided by Netlify:
+
+![Netlify preview deploy](./src/images/preview-deploy.png)
+
+##### Update site name
+
+You can change the site name or update the domain your site displays in "Settings" > "General" > "Site Details".
 
 ## 🚀 Quick start for code development
 
