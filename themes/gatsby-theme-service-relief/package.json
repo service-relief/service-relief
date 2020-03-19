@@ -5,6 +5,23 @@
   "license": "MIT",
   "author": "Dustin Schau <dustinschau@gmail.com>",
   "dependencies": {
-    "gatsby-source-airtable": "^2.1.0"
+    "gatsby-plugin-manifest": "^2.2.48",
+    "gatsby-plugin-page-creator": "^2.1.46",
+    "gatsby-plugin-postcss": "^2.1.22",
+    "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
+    "gatsby-plugin-react-helmet": "^3.1.24",
+    "gatsby-plugin-sharp": "^2.4.13",
+    "gatsby-source-airtable": "^2.1.0",
+    "gatsby-source-filesystem": "^2.1.57",
+    "gatsby-transformer-sharp": "^2.3.19",
+    "tailwindcss": "^1.2.0"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.19.47",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "limax": "^2.0.0"
   }
 }
