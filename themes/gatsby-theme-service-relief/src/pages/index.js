@@ -1,48 +1,86 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { useStaticQuery, graphql } from "gatsby"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import { useStaticQuery, graphql } from "gatsby";
 
 const IndexPage = () => {
-  const data = useStaticQuery(graphql`
-    query SiteLocaleQuery {
+  const {
+    site,
+    allAirtable: { nodes: entities }
+  } = useStaticQuery(graphql`
+    query IndexQuery {
       site {
         siteMetadata {
-          city,
+          city
           state
         }
       }
+      allAirtable {
+        nodes {
+          data {
+            Approved
+            BusinessName
+            BusinessUrl
+            Category
+            FundraiserDescription
+            FundraiserTitle
+            FundraiserUrl
+          }
+          fields {
+            slug
+          }
+        }
+      }
     }
-  `)
+  `);
+
+  const categories = [
+    ...new Set(
+      entities.map(entity => entity.data.Category[0] || `Uncategorized`)
+    )
+  ];
+
+  const slugsByCategory = entities.reduce((categories, entity) => {
+    let category = entity.data.Category[0];
+    if (!categories[category]) {
+      categories[category] = entity.fields.slug;
+    }
+    return categories;
+  }, {});
+
+  const entitiesByCategory = entities.reduce((acc, entity) => {
+    let category = entity.data.Category[0];
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+
+    acc[category].push(entity);
+    return acc;
+  }, {});
+
+  console.log({ entitiesByCategory });
+
   return (
     <Layout>
       <SEO title="Home" />
       <div className="mb-20">
         <p className="text-lg mb-8">
-          A directory of fundraisers for {data.site.siteMetadata.city} bars,
-          venues, restaurants, and service businesses that can use our help to
-          support their staff during the state-mandated shutdown. A
-          work-in-progress.
+          A directory of fundraisers for {site.siteMetadata.city} bars, venues,
+          restaurants, and service businesses that can use our help to support
+          their staff during the state-mandated shutdown. A work-in-progress.
         </p>
         <p className="text-lg mb-8">
           Jump to:{" "}
-          <Link to="#support" className="underline">
-            {data.site.siteMetadata.city}
-          </Link>
-          ,{" "}
-          <Link to="#restaurants" className="underline">
-            restaurants
-          </Link>
-          ,{" "}
-          <Link to="#bars" className="underline">
-            bars &amp; venues
-          </Link>
-          ,{" "}
-          <Link to="#services" className="underline">
-            service businesses
-          </Link>
+          {categories.map(category => (
+            <>
+              <Link to={`#${slugsByCategory[category]}`} className="underline">
+                {category}
+              </Link>
+              {" | "}
+            </>
+          ))}
         </p>
         <Link
           to="/submit"
@@ -52,6 +90,7 @@ const IndexPage = () => {
         </Link>
       </div>
 
+      {/* @TODO Make this a shadowable component */}
       <div className="mb-10 border shadow p-6">
         <h2 className="text-xl font-bold">
           Featured: COVID-19 Solidarity Response Fund for WHO
@@ -76,121 +115,35 @@ const IndexPage = () => {
       </div>
 
       <div className="mb-10">
-        <h2 id="support" className="text-xl font-bold">
-          Support Seattle
-        </h2>
-
-        <ul className="list-disc pl-6 mt-4">
-          <li>
-            <a
-              className="underline"
-              href="https://www.gofundme.com/f/seattle-hospitality-emergency-fund"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Seattle Hospitality Emergency Fund
-            </a>{" "}
-            <p className="mt-2 italic">
-              Team fundraiser by Jessica Tousignant and Candace Whitney Morris
-              to help provide emergency relief to those workers whose hours have
-              been curtailed because of this crisis and who are not being
-              otherwise compensated.
-            </p>
-          </li>
-        </ul>
-      </div>
-
-      <div className="mb-10">
-        <h2 id="restaurants" className="text-xl font-bold">
-          Support restaurants
-        </h2>
-
-        <ul className="list-disc pl-6 mt-4">
-          <li>
-            <a
-              className="underline"
-              href="https://squareup.com/gift/PE1YXZ53M6WRW/order"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Brother Joe
-            </a>{" "}
-            <span className="italic">(support by purchasing gift cards)</span>
-          </li>
-        </ul>
-      </div>
-
-      <div className="mb-10">
-        <h2 id="bars" className="text-xl font-bold">
-          Support bar &amp; event staff
-        </h2>
-
-        <ul className="list-disc pl-6 mt-4">
-          <li>
-            <a
-              className="underline"
-              href="https://www.gofundme.com/f/latona-staff-covid19-shutdown"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Latona Pub
-            </a>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://checkout.square.site/buy/NFAPA6E5MR2MKWRJ7LATPRAY"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              WildRose
-            </a>{" "}
-            <span className="italic">(support by purchasing gift cards)</span>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://republicofcider.com/online-store"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Republic of Cider
-            </a>{" "}
-            <span className="italic">(support by purchasing gift cards)</span>
-          </li>
-        </ul>
-      </div>
-
-      <div className="mb-10">
-        <h2 id="services" className="text-xl font-bold">
-          Support service businesses
-        </h2>
-
-        <ul className="list-disc pl-6 mt-4">
-          <li>
-            <a
-              className="underline"
-              href="https://www.gofundme.com/f/help-cth-pet-sittersdog-walkers-during-covid19"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Close to Home Pet Services
-            </a>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://www.gofundme.com/f/savor-seattle-pike-place-market-COVID19"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Food Delivery by Savor Seattle
-            </a>
-          </li>
-        </ul>
+        {categories.map(category => (
+          <>
+            <h2 id={slugsByCategory[category]} className="text-xl font-bold">
+              {category}
+            </h2>
+            <ul className="list-disc pl-6 mt-4">
+              {entitiesByCategory[category].map(entity => (
+                <li>
+                  <a
+                    className="underline"
+                    href={entity.data.BusinessUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {entity.data.BusinessName}
+                  </a>{" "}
+                  {entity.data.FundraiserDescription && (
+                    <p className="mt-2 italic">
+                      {entity.data.FundraiserDescription}
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </>
+        ))}
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

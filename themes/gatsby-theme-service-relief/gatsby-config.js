@@ -2,17 +2,16 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 });
 
-const city = process.env.CITY || `TODO City`;
-const state = process.env.STATE || `TODO State`;
-
-module.exports = function theme() {
+module.exports = theme => {
+  console.log({ theme });
   return {
     siteMetadata: {
-      title: `${city} Service Relief`,
+      title: `${theme.city} Service Relief`,
       description: `A list of local service-industry businesses and their fundraisers to help them get through the local shutdowns.`,
-      author: `@boborchard`,
-      state,
-      city,
+      authorName: theme.authorName || `@boborchard`,
+      authorLink: theme.authorLink || `https://boborchard.com`,
+      state: theme.state || `{STATE}`,
+      city: theme.city || `{CITY}`,
       airtableEmbed: process.env.AIRTABLE_EMBED_ID // link to documentation
     },
     plugins: [
@@ -24,8 +23,8 @@ module.exports = function theme() {
           apiKey: process.env.AIRTABLE_API_KEY,
           tables: [
             {
-              baseId: process.env.AIRTABLE_BASE_ID || `appKKJX2Tz4Vq6hKl`, // TODO: make fake,
-              tableName: process.env.AIRTABLE_TABLE_NAME || `tbl0agqWsFRYLgAnV` // TODO: make fake,
+              baseId: process.env.AIRTABLE_BASE_ID,
+              tableName: process.env.AIRTABLE_TABLE_NAME
             }
           ]
         }

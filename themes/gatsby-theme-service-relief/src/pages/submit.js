@@ -1,10 +1,11 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
-const SecondPage = () => (
+// @TODO need google form via site config
+const SubmitPage = () => (
   <Layout>
     <SEO title="Submit a Fundraiser" />
 
@@ -35,6 +36,6 @@ const SecondPage = () => (
     </iframe>
     <Link to="/">Go back to the homepage</Link>
   </Layout>
-)
+);
 
-export default SecondPage
+export default SubmitPage;
