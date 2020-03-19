@@ -1,15 +1,28 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+})
+
 module.exports = {
   siteMetadata: {
-    title: `Service Relief`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `{City} Service Relief`,
+    description: `A list of local service-industry businesses and their fundraisers to help them get through the local shutdowns.`,
+    author: `@boborchard`,
+    state: "{state name}",
+    city: "{city name}",
   },
   plugins: [
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-theme-service-relief`,
+      resolve: `gatsby-source-airtable`,
       options: {
-
+        apiKey: process.env.AIRTABLE_API_KEY,
+        tables: [
+          {
+            baseId: `tbl0agqWsFRYLgAnV`, // TODO: make fake,
+            tableName: `viwU99vg5Nf0gLoPE` // TODO: make fake,
+          }
+        ]
       }
     },
     {
@@ -30,7 +43,17 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/heart.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Bungee`
+          }
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
