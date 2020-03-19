@@ -12,7 +12,8 @@ module.exports = theme => {
       authorLink: theme.authorLink || `https://boborchard.com`,
       state: theme.state || `{STATE}`,
       city: theme.city || `{CITY}`,
-      airtableEmbed: process.env.AIRTABLE_EMBED_ID // link to documentation
+      submitForm: theme.submitForm || ``,
+      airtableEmbed: process.env.AIRTABLE_EMBED_ID // link to documentation,
     },
     plugins: [
       `gatsby-plugin-postcss`,

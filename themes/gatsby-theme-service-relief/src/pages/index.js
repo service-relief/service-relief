@@ -60,8 +60,6 @@ const IndexPage = () => {
     return acc;
   }, {});
 
-  console.log({ entitiesByCategory });
-
   return (
     <Layout>
       <SEO title="Home" />
