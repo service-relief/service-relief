@@ -85,7 +85,10 @@ const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
       <div className="mb-10">
         {categories.map(category => (
           <React.Fragment key={slugsByCategory[category]}>
-            <h2 id={slugsByCategory[category]} className="text-xl font-bold">
+            <h2
+              id={slugsByCategory[category]}
+              className="text-xl font-bold mt-4"
+            >
               {category}
             </h2>
             <ul className="list-disc pl-6 mt-4">
