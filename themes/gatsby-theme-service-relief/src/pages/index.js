@@ -122,7 +122,7 @@ export const indexQuery = graphql`
         state
       }
     }
-    allAirtable {
+    allAirtable(filter: { data: { Approved: { eq: "Yes" } } }) {
       nodes {
         data {
           Approved
