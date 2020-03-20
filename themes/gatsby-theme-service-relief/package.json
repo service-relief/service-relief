@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-service-relief",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "main": "index.js",
   "license": "MIT",
   "author": "Dustin Schau <dustinschau@gmail.com>",
@@ -25,6 +25,5 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },
-  "devDependencies": {},
   "gitHead": "81c115d892fcfbe520dd276102b30aab21c07f85"
 }
