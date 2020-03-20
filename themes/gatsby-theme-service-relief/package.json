@@ -26,5 +26,6 @@
   },
   "devDependencies": {
     "limax": "^2.0.0"
-  }
+  },
+  "gitHead": "81c115d892fcfbe520dd276102b30aab21c07f85"
 }
