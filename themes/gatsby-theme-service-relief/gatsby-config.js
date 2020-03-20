@@ -60,7 +60,16 @@ module.exports = theme => {
             }
           ]
         }
-      }
+      },
+      `gatsby-plugin-preact`,
+      {
+        resolve: `gatsby-plugin-purgecss`,
+        options: {
+          printRejected: process.env.gatsby_log_level === `verbose`,
+          develop: process.env.NODE_ENV !== `production`,
+          tailwind: true,
+        },
+      },
       // this (optional) plugin enables Progressive Web App + Offline functionality
       // To learn more, visit: https://gatsby.dev/offline
       // `gatsby-plugin-offline`,
