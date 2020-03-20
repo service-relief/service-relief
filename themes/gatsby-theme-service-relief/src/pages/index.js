@@ -4,15 +4,16 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { Link, graphql } from "gatsby";
 
-const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
-  const categories = [
-    ...new Set(
-      entities.map(entity => entity.data.Category[0] || `Uncategorized`)
-    )
-  ];
+const IndexPage = ({
+  data: {
+    site,
+    allAirtable: { nodes: entities }
+  }
+}) => {
+  const categories = [...new Set(entities.map(entity => entity.data.Category))];
 
   const slugsByCategory = entities.reduce((categories, entity) => {
-    let category = entity.data.Category[0];
+    let category = entity.data.Category;
     if (!categories[category]) {
       categories[category] = entity.fields.slug;
     }
@@ -20,7 +21,7 @@ const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
   }, {});
 
   const entitiesByCategory = entities.reduce((acc, entity) => {
-    let category = entity.data.Category[0];
+    let category = entity.data.Category;
     if (!acc[category]) {
       acc[category] = [];
     }
@@ -40,12 +41,12 @@ const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
         </p>
         <p className="text-lg mb-8">
           Jump to:{" "}
-          {categories.map(category => (
+          {categories.map((category, idx) => (
             <React.Fragment key={slugsByCategory[category]}>
               <a href={`#${slugsByCategory[category]}`} className="underline">
                 {category}
               </a>
-              {index !== categories.length - 1 && " | "}
+              {idx !== categories.length - 1 && " | "}
             </React.Fragment>
           ))}
         </p>
@@ -100,10 +101,10 @@ const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {entity.data.FundraiserTitle}
+                    {entity.data.BusinessName}
                   </a>{" "}
                   {entity.data.FundraiserDescription && (
-                    <p className="mt-2 italic">
+                    <p className="mt-2 mb-2 italic">
                       {entity.data.FundraiserDescription}
                     </p>
                   )}
@@ -130,10 +131,8 @@ export const indexQuery = graphql`
         data {
           Approved
           BusinessName
-          BusinessUrl
           Category
           FundraiserDescription
-          FundraiserTitle
           FundraiserUrl
         }
         fields {
@@ -142,6 +141,6 @@ export const indexQuery = graphql`
       }
     }
   }
-`
+`;
 
 export default IndexPage;
