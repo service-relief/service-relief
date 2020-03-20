@@ -18,6 +18,7 @@
     "gatsby-transformer-sharp": "^2.3.19",
     "limax": "^2.0.0",
     "preact": "^10.3.4",
+    "react-helmet": "^5.2.1",
     "tailwindcss": "^1.2.0"
   },
   "peerDependencies": {
