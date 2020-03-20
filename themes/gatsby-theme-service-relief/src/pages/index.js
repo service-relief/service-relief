@@ -4,7 +4,12 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { Link, graphql } from "gatsby";
 
-const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
+const IndexPage = ({
+  data: {
+    site,
+    allAirtable: { nodes: entities }
+  }
+}) => {
   const categories = [
     ...new Set(
       entities.map(entity => entity.data.Category[0] || `Uncategorized`)
@@ -40,7 +45,7 @@ const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
         </p>
         <p className="text-lg mb-8">
           Jump to:{" "}
-          {categories.map(category => (
+          {categories.map((category, index) => (
             <React.Fragment key={slugsByCategory[category]}>
               <a href={`#${slugsByCategory[category]}`} className="underline">
                 {category}
@@ -142,6 +147,6 @@ export const indexQuery = graphql`
       }
     }
   }
-`
+`;
 
 export default IndexPage;
