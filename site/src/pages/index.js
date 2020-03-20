@@ -1,9 +1,22 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 
-export default () => (
+const Index = ({ data }) => (
   <Layout>
-    <h1>Service Relief US</h1>
+    <div dangerouslySetInnerHTML={{ __html: data.readme.html }} />
   </Layout>
 )
+
+export const pageQuery = graphql`
+  {
+    readme: markdownRemark(fileAbsolutePath:{
+      regex: "/starter\/README.md/"
+    }) {
+      html
+    }
+  }
+`
+
+export default Index
