@@ -1,41 +1,10 @@
 import React from "react";
-import { Link } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { useStaticQuery, graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 
-const IndexPage = () => {
-  const {
-    site,
-    allAirtable: { nodes: entities }
-  } = useStaticQuery(graphql`
-    query IndexQuery {
-      site {
-        siteMetadata {
-          city
-          state
-        }
-      }
-      allAirtable {
-        nodes {
-          data {
-            Approved
-            BusinessName
-            BusinessUrl
-            Category
-            FundraiserDescription
-            FundraiserTitle
-            FundraiserUrl
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  `);
-
+const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
   const categories = [
     ...new Set(
       entities.map(entity => entity.data.Category[0] || `Uncategorized`)
@@ -72,12 +41,12 @@ const IndexPage = () => {
         <p className="text-lg mb-8">
           Jump to:{" "}
           {categories.map(category => (
-            <>
-              <Link to={`#${slugsByCategory[category]}`} className="underline">
+            <React.Fragment key={slugsByCategory[category]}>
+              <a href={`#${slugsByCategory[category]}`} className="underline">
                 {category}
-              </Link>
+              </a>
               {" | "}
-            </>
+            </React.Fragment>
           ))}
         </p>
         <Link
@@ -114,13 +83,13 @@ const IndexPage = () => {
 
       <div className="mb-10">
         {categories.map(category => (
-          <>
+          <React.Fragment key={slugsByCategory[category]}>
             <h2 id={slugsByCategory[category]} className="text-xl font-bold">
               {category}
             </h2>
             <ul className="list-disc pl-6 mt-4">
               {entitiesByCategory[category].map(entity => (
-                <li>
+                <li key={entity.data.BusinessName}>
                   <a
                     className="underline"
                     href={entity.data.BusinessUrl}
@@ -137,11 +106,38 @@ const IndexPage = () => {
                 </li>
               ))}
             </ul>
-          </>
+          </React.Fragment>
         ))}
       </div>
     </Layout>
   );
 };
+
+export const indexQuery = graphql`
+  query IndexQuery {
+    site {
+      siteMetadata {
+        city
+        state
+      }
+    }
+    allAirtable {
+      nodes {
+        data {
+          Approved
+          BusinessName
+          BusinessUrl
+          Category
+          FundraiserDescription
+          FundraiserTitle
+          FundraiserUrl
+        }
+        fields {
+          slug
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage;
