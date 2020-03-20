@@ -96,11 +96,11 @@ const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
                 <li key={entity.data.BusinessName}>
                   <a
                     className="underline"
-                    href={entity.data.BusinessUrl}
+                    href={entity.data.FundraiserUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {entity.data.BusinessName}
+                    {entity.data.FundraiserTitle}
                   </a>{" "}
                   {entity.data.FundraiserDescription && (
                     <p className="mt-2 italic">
