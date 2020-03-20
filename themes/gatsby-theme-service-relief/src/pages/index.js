@@ -45,7 +45,7 @@ const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
               <a href={`#${slugsByCategory[category]}`} className="underline">
                 {category}
               </a>
-              {" | "}
+              {index !== categories.length - 1 && " | "}
             </React.Fragment>
           ))}
         </p>
