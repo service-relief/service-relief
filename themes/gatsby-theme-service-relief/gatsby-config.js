@@ -3,7 +3,6 @@ require("dotenv").config({
 });
 
 module.exports = theme => {
-  console.log({ theme });
   return {
     siteMetadata: {
       title: `${theme.city} Service Relief`,
@@ -12,8 +11,7 @@ module.exports = theme => {
       authorLink: theme.authorLink || `https://boborchard.com`,
       state: theme.state || `{STATE}`,
       city: theme.city || `{CITY}`,
-      submitForm: theme.submitForm || ``,
-      airtableEmbed: process.env.AIRTABLE_EMBED_ID // link to documentation,
+      formId: theme.formId || process.env.AIRTABLE_EMBED_ID
     },
     plugins: [
       `gatsby-plugin-postcss`,

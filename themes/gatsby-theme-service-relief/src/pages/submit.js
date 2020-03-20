@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import { useStaticQuery, graphql } from "gatsby";
+import AirtableForm from '../components/airtable-form'
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -10,7 +11,7 @@ const SubmitPage = () => {
     query SubmitQuery {
       site {
         siteMetadata {
-          submitForm
+          formId
         }
       }
     }
@@ -33,17 +34,7 @@ const SubmitPage = () => {
         form below. We will review them as they come in and let you know when
         your link has been added to the site.
       </p>
-      <iframe
-        className="mt-10"
-        src={site.siteMetadata.submitForm}
-        width="100%"
-        height="1000"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-      >
-        Loading…
-      </iframe>
+      <AirtableForm id={site.siteMetadata.formId} />
       <Link to="/">Go back to the homepage</Link>
     </Layout>
   );

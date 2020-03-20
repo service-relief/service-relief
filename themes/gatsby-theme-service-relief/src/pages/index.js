@@ -75,6 +75,7 @@ const IndexPage = ({ data: { site, allAirtable: { nodes: entities }}}) => {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Donate Here
           </a>
