@@ -2,6 +2,7 @@ import React from "react";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import Featured from "../components/featured";
 import { Link, graphql } from "gatsby";
 
 const IndexPage = ({
@@ -58,30 +59,7 @@ const IndexPage = ({
         </Link>
       </div>
 
-      {/* @TODO Make this a shadowable component */}
-      <div className="mb-10 border shadow p-6">
-        <h2 className="text-xl font-bold">
-          Featured: COVID-19 Solidarity Response Fund for WHO
-        </h2>
-
-        <p className="mt-4">
-          Donations support WHO’s work to track and understand the spread of the
-          virus; to ensure patients get the care they need and frontline workers
-          get essential supplies and information; and to accelerate efforts to
-          develop vaccines, tests, and treatments.
-        </p>
-
-        <p className="mt-4">
-          <a
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Donate Here
-          </a>
-        </p>
-      </div>
+      <Featured />
 
       <div className="mb-10">
         {categories.map(category => (
