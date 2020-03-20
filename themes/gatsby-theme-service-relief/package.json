@@ -16,6 +16,7 @@
     "gatsby-source-airtable": "^2.1.0",
     "gatsby-source-filesystem": "^2.1.57",
     "gatsby-transformer-sharp": "^2.3.19",
+    "limax": "^2.0.0",
     "preact": "^10.3.4",
     "tailwindcss": "^1.2.0"
   },
@@ -24,8 +25,6 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },
-  "devDependencies": {
-    "limax": "^2.0.0"
-  },
+  "devDependencies": {},
   "gitHead": "81c115d892fcfbe520dd276102b30aab21c07f85"
 }
