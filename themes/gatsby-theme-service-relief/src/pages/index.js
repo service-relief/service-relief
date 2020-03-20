@@ -105,7 +105,7 @@ const IndexPage = ({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {entity.data.FundraiserTitle}
+                    {entity.data.BusinessName}
                   </a>{" "}
                   {entity.data.FundraiserDescription && (
                     <p className="mt-2 italic">
@@ -135,10 +135,8 @@ export const indexQuery = graphql`
         data {
           Approved
           BusinessName
-          BusinessUrl
           Category
           FundraiserDescription
-          FundraiserTitle
           FundraiserUrl
         }
         fields {
