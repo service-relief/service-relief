@@ -2,16 +2,16 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 });
 
-module.exports = theme => {
+module.exports = ({ authorName, authorLink, state, city }) => {
   return {
     siteMetadata: {
-      title: `${theme.city} Service Relief`,
+      title: `${city} Service Relief`,
       description: `A list of local service-industry businesses and their fundraisers to help them get through the local shutdowns.`,
-      authorName: theme.authorName || `@boborchard`,
-      authorLink: theme.authorLink || `https://boborchard.com`,
-      state: theme.state || `{STATE}`,
-      city: theme.city || `{CITY}`,
-      formId: theme.formId || process.env.AIRTABLE_EMBED_ID
+      authorName: authorName || `@boborchard`,
+      authorLink: authorLink || `https://boborchard.com`,
+      state: state || `{STATE}`,
+      city: city || `{CITY}`,
+      formId: process.env.AIRTABLE_EMBED_ID
     },
     plugins: [
       `gatsby-plugin-postcss`,
@@ -59,7 +59,7 @@ module.exports = theme => {
           ]
         }
       },
-      `gatsby-plugin-preact`,
+      `gatsby-plugin-preact`
       // this seems to break our CSS
       // {
       //   resolve: `gatsby-plugin-purgecss`,
