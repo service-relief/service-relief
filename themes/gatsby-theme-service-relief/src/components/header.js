@@ -3,9 +3,9 @@ import PropTypes from "prop-types"
 import React from "react"
 
 const Header = ({ siteCity, siteState }) => (
-  <header className="container mx-auto max-w-2xl">
-    <h1 className="font-heading text-5xl py-16 leading-none">
-      <Link to="/">
+  <header className='container mx-auto max-w-2xl sm:px-0 px-4'>
+    <h1 className='font-heading text-5xl py-16 leading-none'>
+      <Link to='/'>
         <span>{siteCity}</span>
         <br />
         <span>Service</span>
