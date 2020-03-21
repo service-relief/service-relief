@@ -3,6 +3,7 @@ import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Featured from "../components/featured";
+import Description from "../components/description";
 import { Link, graphql } from "gatsby";
 
 const IndexPage = ({
@@ -35,11 +36,7 @@ const IndexPage = ({
     <Layout>
       <SEO title="Home" />
       <div className="mb-20">
-        <p className="text-lg mb-8">
-          A directory of fundraisers for {site.siteMetadata.city} bars, venues,
-          restaurants, and service businesses that can use our help to support
-          their staff during the state-mandated shutdown. A work-in-progress.
-        </p>
+        <Description city={site.siteMetadata.city} />
         <p className="text-lg mb-8">
           Jump to:{" "}
           {categories.map((category, idx) => (
