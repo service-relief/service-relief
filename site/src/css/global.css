@@ -1,0 +1,59 @@
+@tailwind base;
+
+.gatsby-readme h1 {
+  @apply text-2xl;
+  @apply font-bold;
+}
+.gatsby-readme h2 {
+  @apply text-xl;
+  @apply font-bold;
+  @apply border-b-2;
+  @apply mt-8;
+  @apply mb-4;
+  @apply pb-2;
+}
+.gatsby-readme h3 {
+  @apply text-lg;
+  @apply font-bold;
+}
+.gatsby-readme h3 {
+  @apply text-lg;
+  @apply font-bold;
+}
+.gatsby-readme p {
+  margin: 1em 0;
+}
+.gatsby-readme ul {
+  @apply list-disc;
+  @apply pl-6;
+  @apply mb-6;
+}
+.gatsby-readme ul li p {
+  margin: .5em 0;
+}
+.gatsby-readme code {
+  padding: 3px 8px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #E01E5A;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.gatsby-readme pre code {
+  display: block;
+  padding: 9.5px;
+  margin: 30px 0;
+}
+
+.gatsby-readme img,
+.gatsby-readme .gatsby-resp-image-wrapper img {
+  @apply shadow;
+  @apply border;
+}
+
+@tailwind components;
+
+@tailwind utilities;
