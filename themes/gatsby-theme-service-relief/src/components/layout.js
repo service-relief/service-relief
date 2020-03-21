@@ -29,31 +29,31 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header
-        siteTitle={data.site.siteMetadata.title}
-        siteCity={data.site.siteMetadata.city}
-        siteState={data.site.siteMetadata.state}
-      />
-      <div className='container mx-auto max-w-2xl sm:px-0 px-4'>
+      <div className="container mx-auto max-w-2xl sm:px-0 px-4">
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          siteCity={data.site.siteMetadata.city}
+          siteState={data.site.siteMetadata.state}
+        />
         <main>{children}</main>
-        <footer className='text-sm pt-10'>
+        <footer className="text-sm pt-10">
           &copy; {new Date().getFullYear()} &amp; built with
           {` `}
-          <a className='text-blue-600' href='https://www.gatsbyjs.org'>
+          <a className="text-blue-600" href="https://www.gatsbyjs.org">
             Gatsby
           </a>{" "}
           by{" "}
-          <a className='text-blue-600' href={data.site.siteMetadata.authorLink}>
+          <a className="text-blue-600" href={data.site.siteMetadata.authorLink}>
             {data.site.siteMetadata.authorName}
           </a>
           .{" "}
-          <a className='text-blue-600' href='https://www.servicerelief.us/'>
+          <a className="text-blue-600" href="https://www.servicerelief.us/">
             Build one for your city.
           </a>
         </footer>
       </div>
     </>
-  )
+  );
 };
 
 Layout.propTypes = {
