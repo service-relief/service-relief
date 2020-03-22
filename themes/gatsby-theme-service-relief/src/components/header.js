@@ -8,9 +8,9 @@ const Header = ({ siteCity, siteState }) => (
       <Link to="/">
         <span>{siteCity}</span>
         <br />
-        <span>Service</span>
-        <br />
         <span>Relief</span>
+        <br />
+        <span>Resources</span>
       </Link>
     </h1>
   </header>

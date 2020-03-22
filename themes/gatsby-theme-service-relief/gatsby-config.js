@@ -5,10 +5,12 @@ require("dotenv").config({
 module.exports = ({ authorName, authorLink }) => {
   return {
     siteMetadata: {
-      title: `${process.env.CITY} Service Relief`,
-      description: `A list of local service-industry businesses and their fundraisers to help them get through the local shutdowns.`,
+      title: `${process.env.CITY} Relief Resources`,
+      description: `A list of resources that ${process.env.CITY} residents can both utilize and donate to during and beyond this COVID-19 situation.`,
       authorName: authorName || `@boborchard`,
       authorLink: authorLink || `https://boborchard.com`,
+      remixAuthorName: authorName || `Henry Quinn`,
+      remixAuthorLink: authorLink || `https://henryneeds.coffee`,
       state: process.env.STATE || `{STATE}`,
       city: process.env.CITY || `{CITY}`,
       formId: process.env.AIRTABLE_EMBED_ID

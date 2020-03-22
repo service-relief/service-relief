@@ -47,6 +47,11 @@ const Layout = ({ children }) => {
             {data.site.siteMetadata.authorName}
           </a>
           .{" "}
+          Remixed by
+          <a className="text-blue-600" href={data.site.siteMetadata.remixAuthorLink}>
+            {data.site.siteMetadata.remixAuthorName}
+          </a>
+          .{" "}
           <a className="text-blue-600" href="https://www.servicerelief.us/">
             Build one for your city.
           </a>

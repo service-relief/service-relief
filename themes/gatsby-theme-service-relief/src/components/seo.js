@@ -18,7 +18,7 @@ function SEO({ description, lang, meta, title }) {
           siteMetadata {
             title
             description
-            authorName
+            remixAuthorName
           }
         }
       }
@@ -57,7 +57,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.authorName
+          content: site.siteMetadata.remixAuthorName
         },
         {
           name: `twitter:title`,
