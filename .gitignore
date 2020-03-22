@@ -71,3 +71,6 @@ yarn-error.log
 # secrets
 .env*
 !.env.sample
+
+# other
+package-lock.json
