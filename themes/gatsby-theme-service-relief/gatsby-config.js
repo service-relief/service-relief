@@ -2,11 +2,13 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 });
 
-module.exports = ({ authorName, authorLink }) => {
+module.exports = ({ authorName, authorLink, description }) => {
   return {
     siteMetadata: {
       title: `${process.env.CITY} Service Relief`,
-      description: `A list of local service-industry businesses and their fundraisers to help them get through the local shutdowns.`,
+      description:
+        description ||
+        `A list of local service-industry businesses and their fundraisers to help them get through the local shutdowns.`,
       authorName: authorName || `@boborchard`,
       authorLink: authorLink || `https://boborchard.com`,
       state: process.env.STATE || `{STATE}`,
