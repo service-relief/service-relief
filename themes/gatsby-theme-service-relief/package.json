@@ -21,6 +21,10 @@
     "react-helmet": "^5.2.1",
     "tailwindcss": "^1.2.0"
   },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
   "peerDependencies": {
     "gatsby": "^2.19.47",
     "react": "^16.13.0",
