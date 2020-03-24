@@ -29,12 +29,12 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header
-        siteTitle={data.site.siteMetadata.title}
-        siteCity={data.site.siteMetadata.city}
-        siteState={data.site.siteMetadata.state}
-      />
-      <div className="container mx-auto max-w-2xl">
+      <div className="container mx-auto max-w-2xl sm:px-0 px-4">
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          siteCity={data.site.siteMetadata.city}
+          siteState={data.site.siteMetadata.state}
+        />
         <main>{children}</main>
         <footer className="text-sm pt-10">
           &copy; {new Date().getFullYear()} &amp; built with

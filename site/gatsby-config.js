@@ -5,8 +5,11 @@ module.exports = {
     title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
+    authorName: `the Gatsby team`,
+    authorLink:  `https://gatsbyjs.com/about`
   },
   plugins: [
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -21,16 +24,14 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: path.join(__dirname, `..`, `examples`, `starter`),
-        name: `starter-info`
-      }
+        name: `starter-info`,
+      },
     },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [
-          `gatsby-remark-images`
-        ]
-      }
+        plugins: [`gatsby-remark-images`, "gatsby-remark-static-images"],
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -42,6 +43,16 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Bungee`,
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
