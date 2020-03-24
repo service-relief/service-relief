@@ -1,9 +1,9 @@
 {
-  "name": "relief-resources",
+  "name": "service-relief",
   "private": true,
   "version": "1.0.0",
   "main": "n/a",
-  "author": "Henry Quinn <henryquinniv@gmail.com>",
+  "author": "Dustin Schau <dustinschau@gmail.com>",
   "contributors": [
     "Bob Orchard"
   ],
