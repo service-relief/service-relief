@@ -39,7 +39,7 @@ const Index = ({ data }) => (
     </div>
     <div
       dangerouslySetInnerHTML={{ __html: data.readme.html }}
-      className="gatsby-readme"
+      className="gatsby-readme border p-4"
     />
   </Layout>
 )

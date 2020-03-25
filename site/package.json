@@ -6,6 +6,7 @@
   "author": "Bob Orchard",
   "dependencies": {
     "gatsby": "^2.19.45",
+    "gatsby-plugin-postcss": "^2.2.1",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-sharp": "^2.4.13",
     "gatsby-remark-images": "^3.1.50",
