@@ -4,7 +4,9 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Featured from "../components/featured";
 import Description from "../components/description";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
+
+import FormButton from '../components/form-button'
 
 const IndexPage = ({
   data: {
@@ -48,12 +50,7 @@ const IndexPage = ({
             </React.Fragment>
           ))}
         </p>
-        <Link
-          to="/submit"
-          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-        >
-          Suggest an addition &rarr;
-        </Link>
+        <FormButton />
       </div>
 
       <Featured />
