@@ -23,7 +23,8 @@
   },
   "keywords": [
     "gatsby",
-    "gatsby-plugin"
+    "gatsby-plugin",
+    "gatsby-theme"
   ],
   "peerDependencies": {
     "gatsby": "^2.19.47",
