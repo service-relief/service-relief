@@ -7,7 +7,7 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import "../css/global.css"
 
 
@@ -26,7 +26,20 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <div className="container mx-auto max-w-3xl">
+      <div className="container mx-auto max-w-2xl sm:px-0 px-4">
+        <header>
+          <h1 className="font-heading text-5xl py-16 leading-none">
+            <Link to="/">
+              <span>The</span>
+              <br />
+              <span>Service</span>
+              <br />
+              <span>Relief</span>
+              <br />
+              <span>Project</span>
+            </Link>
+          </h1>
+        </header>
         <main>{children}</main>
         <footer className="text-sm pt-10">
           Built with

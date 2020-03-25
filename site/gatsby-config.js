@@ -2,11 +2,16 @@ const path = require('path')
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: `${process.env.CITY} Service Relief`,
+    description: `A list of local relief resource directories to help cities and regions get through the local shutdowns.`,
     author: `@gatsbyjs`,
     authorName: `the Gatsby team`,
-    authorLink:  `https://gatsbyjs.com/about`
+    authorLink: `https://gatsbyjs.com/about`,
+    authorName: `@gatsbyjs`,
+    authorLink: `https://gatsbyjs.com/about`,
+    state: process.env.STATE || `{STATE}`,
+    city: process.env.CITY || `{CITY}`,
+    formId: process.env.AIRTABLE_EMBED_ID,
   },
   plugins: [
     `gatsby-plugin-postcss`,
@@ -17,6 +22,18 @@ module.exports = {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
+    },
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: process.env.AIRTABLE_API_KEY,
+        tables: [
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: process.env.AIRTABLE_TABLE_NAME
+          }
+        ]
+      }
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
