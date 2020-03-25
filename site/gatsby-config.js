@@ -2,9 +2,9 @@ const path = require('path')
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Service Relief`,
+    description: `This is a directory of the Service Relief projects from around the world. Each directory promotes local fundraisers to support bars, restaurants, service businesses and more affected by the COVID-19 health crisis around the world.`,
+    author: `@boborchard`,
     authorName: `the Gatsby team`,
     authorLink:  `https://gatsbyjs.com/about`
   },

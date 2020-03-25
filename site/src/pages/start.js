@@ -3,9 +3,11 @@ import { graphql } from 'gatsby'
 import { Link } from "gatsby"
 
 import Layout from 'gatsby-theme-service-relief/src/components/layout'
+import SEO from '../components/seo'
 
 const Index = ({ data }) => (
   <Layout>
+    <SEO title="Getting started with your Service Relief site" description="Use these instructions to get up and running with helping your community!" />
     <style
       dangerouslySetInnerHTML={{
         __html: `
