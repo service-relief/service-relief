@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Link } from "gatsby"
 
-import Layout from '../components/layout'
+import Layout from 'gatsby-theme-service-relief/src/components/layout'
 
 const Index = ({ data }) => (
   <Layout>

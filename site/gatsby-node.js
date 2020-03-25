@@ -1,7 +1,24 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
+exports.createSchemaCustomization = ({ actions, schema }) => {
+  const { createTypes } = actions
+  const typeDefs = [
+    schema.buildObjectType({
+      name: "AirtableData",
+      fields: {
+        FundraiserUrl: {
+          type: `String!`,
+          resolve: source => source.Url
+        },
+        FundraiserDescription: {
+          type: `String`,
+          resolve: source => source.Description
+        },
+        BusinessName: {
+          type: `String`,
+          resolve: source => source.Name
+        }
+      },
+      interfaces: ["Node"],
+    }),
+  ]
+  createTypes(typeDefs)
+}
