@@ -5,7 +5,7 @@
   </a>
 </p>
 <h1 align="center">
-  servicerelief.us
+  Service Relief Theme
 </h1>
 
 Kick off your city's relief efforts as we all learn to cope with COVID-19 with this theme powered by Gatsby, Airtable, and community efforts.
@@ -14,6 +14,6 @@ Kick off your city's relief efforts as we all learn to cope with COVID-19 with t
 
 This project is aims to make it as easy as possible to launch and manage an index of resources in your city during the COVID-19 pandemic.
 
-With the theme and starter, you can set up a service relief site without touching any code.
+Using this template you can set up a service relief site without touching any code.
 
 See [servicerelief.us](https://servicerelief.us/start) for more info.
